@@ -1,0 +1,34 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+    <header>
+        <h1>NBR</h1>
+    </header>
+
+    
+    
+    <div class="form">
+        <form action="{% url 'new' %}" method="post">
+            {% if message %}
+                <h2>{{ message }}</h2>
+            {% endif %}
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Senha">
+            <input type="submit" class="send" value="CRIAR">
+        </form>
+    </div>
+
+    <footer>
+        <dl>
+            <dt>E-mail</dt>
+            <dd>NBR@outlook.com</dd>
+            <br/>
+            <dt>Telefone</dt>
+            <dd>(17) 99888-7766</dd>
+            <p>NBR </p>
+        </dl>
+    </footer>
+{% endblock %}

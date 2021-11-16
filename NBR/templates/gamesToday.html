@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block style %}
+<style>
+    .row {
+        
+        padding-bottom: 40px;
+        padding-top: 40px;
+    }
+
+    .row-intern{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-top: 2px;
+        border-top-style: solid;
+        border-top-color: black;
+        border-bottom: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: black;
+        border-radius: 20px;
+
+    }
+
+    .teams {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 500px;
+    }
+
+</style>
+{% endblock %}
+{% block body %}
+
+    {% for game in games %}
+    <div class="row">
+        <div class="row-intern">
+            <div class="teams">
+                <div class="team">
+                    <h2>Time da casa</h2>
+                    <img src="{{ game.hTeam.logo }}" alt="Image {{ game.hTeam.fullName }}">
+                    <h2>{{ game.hTeam.nickName }}</h2>
+                </div>
+
+                <h1 >X</h1>
+
+                <div class="team">
+                    <h2>Time visitante</h2>
+                    <img src="{{ game.vTeam.logo }}" alt="Image {{ game.vTeam.fullName }}">
+                    <h2>{{ game.vTeam.nickName }}</h2>
+                </div>
+            </div>
+
+            <h2>Hora de início: {{ game.startTimeUTC|slice:'11:16' }}</h2>
+            <h2>Arena: {{ game.arena }}</h2>
+            <h2>Local: {{ game.city }}, {{ game.country }}</h2>
+            <br>
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

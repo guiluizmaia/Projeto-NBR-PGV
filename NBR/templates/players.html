@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style>
+    form input {
+        margin-top: 1.5%;
+        height: 50px;
+        width: 400px;
+        font-size: 20px;
+    }
+
+    .player {
+        border: 2px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 25px;
+    }
+
+    .same {
+        color: red;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <form action="http://{{ request.get_host }}/players" method="post" class="teamForm" >
+            {% csrf_token %}
+            
+            {% if message %}
+                <div>{{ message }}</div>
+            {% endif %}
+            <div>
+                <input type="text" name="name" placeholder="Primeiro nome do jogador">
+            </div>
+            <div>
+                <input type="submit" name="submit" class="sendTeam">
+            </div>
+        </form>
+        <div class="players">
+            {% for player in players%}
+                <div class="player">
+                    <img src="{{ player.image }}" alt="Image {{ game.hTeam.fullName }}">
+                    <h2>Nome: {{ player.firstName }} {{ player.lastName }}</h2>
+                    <h2>Time: {{ player.team }}</h2>
+                    <h2>Altura: {{ player.heightInMeters }}</h2>
+                    <h2>Peso: {{ player.weightInKilograms }}</h2>
+                    <a href="http://{{ request.get_host }}/players/{{ player.playerId }}">MAIS INFORMAÇÕES</a>
+                    {% if player.sameName %}
+                        <h2 class="same">TEM O MESMO NOME QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                    {% if player.sameHeight %}
+                        <h2 class="same">TEM A MESMA ALTURA QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                    {% if player.sameWeight %}
+                        <h2 class="same">TEM O MESMO PESO QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+{% endblock %}

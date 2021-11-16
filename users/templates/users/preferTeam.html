@@ -1,0 +1,34 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+    <header>
+        <h1>NBR</h1>
+    </header>
+    <div class="cadastro">
+        <form action="{% url 'team' %}" method="post" class="teamForm" >
+            {% csrf_token %}
+            
+            {% if message %}
+                <div>{{ message }}</div>
+            {% endif %}
+            <div>
+                <input type="text" name="team" placeholder="Nick do time">
+            </div>
+            <div>
+                <input type="submit" name="submit" class="sendTeam">
+            </div>
+        </form>
+    </div> 
+    </div>
+    <footer>
+        <dl>
+            <dt>E-mail</dt>
+            <dd>NBR@outlook.com</dd>
+            <br/>
+            <dt>Telefone</dt>
+            <dd>(17) 99888-7766</dd>
+            
+            <p>NBR</p>
+        </dl>
+    </footer>
+{% endblock %}

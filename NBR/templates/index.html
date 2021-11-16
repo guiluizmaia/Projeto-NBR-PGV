@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="row">
+        <h1>DADOS CADASTRAIS</h1>
+        <h2>Nome: {{ userFirstName }} {{ userLastName }}</h2>
+        <h2>Altura: {{ userHeight }}</h2>
+        <h2>Peso: {{ userWeight }}</h2>
+        <h2>Nacionalidade: {{ userNationality }}</h2>
+        <h2>Data de nascimento: {{ userDateOfBirth }}</h2>
+        <h2>Cidade: {{ userAddresseeCity }}</h2>
+        <br>
+        <br>
+        <br>
+
+        <h1>TIME PREFERIDO</h1>
+        <img src="{{ teamImage }}" alt="Image {{ teamName }}">
+        <h2>{{ teamName }}</h2>
+        <br>
+        <a href="http://127.0.0.1:8000/users/cad">Atualizar dados</a>
+    </div>
+{% endblock %}

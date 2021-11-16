@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style>
+    form input {
+        margin-top: 1.5%;
+        height: 50px;
+        width: 400px;
+        font-size: 20px;
+    }
+
+    .player {
+        border: 2px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 25px;
+    }
+
+    .same {
+        color: red;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="players">
+                <div class="player">
+                    {% if message %}
+                        <div>{{ message }}</div>
+                    {% endif %}
+                    <img src="{{ player.image }}" alt="Image {{ game.hTeam.fullName }}">
+                    <h2>Nome: {{ player.firstName }} {{ player.lastName }}</h2>
+                    <h2>Time: {{ player.team }}</h2>
+                    <h2>Altura: {{ player.heightInMeters }}</h2>
+                    <h2>Posição: {{ player.position }}</h2>
+                    <h2>Pontos da carreira: {{ player.careerPoints }}</h2>
+                    <h2>Bloqueios da carreira: {{ player.careerBlocks }}</h2>
+                    <h2>Assistencias da carreira: {{ player.carrerAssists }}</h2>
+                    <h2>Rebotes da carreira: {{ player.careerRebounds }}</h2>
+                    <h2>Turnovers da carreira: {{ player.careerTurnovers }}</h2>
+                    <h2>Percentual de cestas de 3 pontos da carreira: {{ player.careerPercentageThree }}</h2>
+                    <h2>Percentual de lances livres da carreira: {{ player.careerPercentageFreethrow }}</h2>
+                    <h2>Percentual de outras cestas da carreira: {{ player.careerPercentageFieldGoal }}</h2>
+
+                    {% if player.sameName %}
+                        <h2 class="same">TEM O MESMO NOME QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                    {% if player.sameHeight %}
+                        <h2 class="same">TEM A MESMA ALTURA QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                    {% if player.sameWeight %}
+                        <h2 class="same">TEM O MESMO PESO QUE VOCÊ</h2>
+                    {% endif %}
+                    <br>
+                </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}

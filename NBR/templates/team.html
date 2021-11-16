@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block style %}
+<style>
+    form input {
+        margin-top: 1.5%;
+        height: 50px;
+        width: 400px;
+        font-size: 20px;
+    }
+
+    .sendTeam {
+        margin-top: 7%;
+        border-radius: 10px;
+        font-size: 35px;
+    }
+
+    .sendTeam:hover {
+      background: #dd1d49;
+      box-shadow: 0 0 10px #e06884, 0 0 40px #e06884, 0 0 80px #e06884;
+      transition-delay: 0.1s;
+    }
+
+    .teamForm {
+      height: auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <form action="http://{{ request.get_host }}/team" method="post" class="teamForm" >
+            {% csrf_token %}
+            
+            {% if message %}
+                <div>{{ message }}</div>
+            {% endif %}
+            <div>
+                <input type="text" name="team" placeholder="Nick do time">
+            </div>
+            <div>
+                <input type="submit" name="submit" class="sendTeam">
+            </div>
+        </form>
+        {% if prefer == True %}
+        <h1>TIME PREFERIDO</h1>
+        {% endif %}
+
+        {% if teamImage %}
+        <img src="{{ teamImage }}" alt="Image {{ teamName }}">
+        {% endif %}
+        <h2>{{ teamName }}</h2>
+        <br>
+    </div>
+{% endblock %}

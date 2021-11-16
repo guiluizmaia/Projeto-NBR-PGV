@@ -1,0 +1,51 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+    <header>
+        <h1>NBR</h1>
+    </header>
+    <div class="cadastro">
+        <form action="{% url 'cad' %}" method="post" class="cadForm" >
+            {% csrf_token %}
+            <div>
+                <input type="text" name="firstName" placeholder="Nome" value="{{firstName}}">
+            </div>
+            <div>
+                <input type="text" name="lastName" placeholder="Sobrenome" value="{{lastName}}">
+            </div>
+            <div>
+                <input type="text" name="height" placeholder="Altura" value="{{height}}">
+            </div>
+            <div>
+                <input type="text" name="weight" placeholder="Peso" value="{{weight}}">
+            </div>
+            <div>
+                <input type="date" name="dateOfBirth" placeholder="Data de nascimento" {{disabled}}>
+            </div>
+            <div>
+                <input type="text" name="addresseeCity" placeholder="Endereço (cidade)" value="{{addresseeCity}}">
+            </div>
+            <div>
+                <input list="text" name="nationality" placeholder="Nacionalidade" value="{{nationality}}">
+            </div>
+            <div>
+                <input type="submit" name="submit" class="sendCad">
+            </div>
+        </form>
+    </div>
+            
+       
+        
+    </div>
+    <footer>
+        <dl>
+            <dt>E-mail</dt>
+            <dd>NBR@outlook.com</dd>
+            <br/>
+            <dt>Telefone</dt>
+            <dd>(17) 99888-7766</dd>
+            
+            <p>NBR</p>
+        </dl>
+    </footer>
+{% endblock %}

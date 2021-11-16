@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG5</title>
+    <link rel="stylesheet" href="{% static 'dist/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/cadastrais.css' %}">
+    {% block style %}
+    {% endblock %}
+   
+</head>
+<body>
+    <header>
+        <h1>NBR</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="http://{{ request.get_host }}">Home</a></li>
+            <li><a href="http://{{ request.get_host }}/team">Time</a></li>
+            <li><a href="http://{{ request.get_host }}/games">Jogos do dia</a></li>
+            <li><a href="http://{{ request.get_host }}/players">Jogadores</a></li>
+            <li><a href="http://{{ request.get_host }}/users/logout">Logout</a></li>
+
+        </ul>
+    </nav>
+    {% block body %}
+    {% endblock %}
+    <footer>
+        <dl>
+
+            <dt>E-mail</dt>
+            <dd>NBR@outlook.com</dd>
+            <br/>
+            <dt>Telefone</dt>
+            <dd>(17) 99888-7766</dd>
+ 
+            <p>NBR</p>
+        </dl>
+    </footer>
+    </body>
+</html>
