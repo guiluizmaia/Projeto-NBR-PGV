@@ -17,6 +17,6 @@
         <img src="{{ teamImage }}" alt="Image {{ teamName }}">
         <h2>{{ teamName }}</h2>
         <br>
-        <a href="http://127.0.0.1:8000/users/cad">Atualizar dados</a>
+        <a href="http://{{ request.get_host }}/users/cad">Atualizar dados</a>
     </div>
 {% endblock %}
