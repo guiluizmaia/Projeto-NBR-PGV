@@ -70,12 +70,18 @@ def post(request):
 @login_required(login_url="login")
 def teamFind(request):
     userLogged = user.objects.filter(loginId=request.user.id)
+    userLoggedTeam = userTeam.objects.filter(userId=userLogged[0].id)
 
     if(not(userLogged)):
         return render(request, "users/cadastro.html")
     else:
         if request.method == "POST":
             name = request.POST["team"]
+
+            if(not(name)):
+                return render(request, "users/preferTeam.html", {
+                    "message": "Campo de time é obrigatório",
+                })
 
             t = team.objects.filter(
                 nickName=name.capitalize())
@@ -124,4 +130,7 @@ def teamFind(request):
                     ut[0].save()
                 return HttpResponseRedirect(reverse("NBR:home"))
         else:
-            return render(request, "users/preferTeam.html")
+            if(len(userLoggedTeam) > 0):
+                return render(request, "users/preferTeam.html", {"nickname": userLoggedTeam[0].teamId.nickName})
+            else:
+                return render(request, "users/preferTeam.html")
